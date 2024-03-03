@@ -118,14 +118,15 @@ jobSchema.pre("save", function (next) {
 
 jobSchema.pre("save", async function (next) {
   const loc = await geoCoder.geocode(this.address);
+  console.log(loc);
   this.location = {
     type: "Point",
-    coordinates: [loc[0].longitude, loc[0].latitude],
-    formattedAddress: loc[0].formattedAddress,
-    city: loc[0].city,
-    state: loc[0].state,
-    zipcode: loc[0].zipcode,
-    country: loc[0].country,
+    coordinates: [loc[1].longitude, loc[1].latitude],
+    formattedAddress: loc[1].formattedAddress,
+    city: loc[1].city,
+    state: loc[1].state,
+    zipcode: loc[1].zipcode,
+    country: loc[1].country,
   };
 });
 
